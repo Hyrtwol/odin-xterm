@@ -39,6 +39,12 @@ init_console :: proc() {
 			has_terminal_colours = true
 		}
 	}
-	win32.SetConsoleCP(code_page)
-	win32.SetConsoleOutputCP(code_page)
+
+	cpi, cpo := win32.GetConsoleCP(), win32.GetConsoleOutputCP()
+	if cpi != code_page {
+		if !win32.SetConsoleCP(code_page) {fmt.panicf("Unable to set codepage to %v", code_page)}
+	}
+	if cpo != code_page {
+		if !win32.SetConsoleOutputCP(code_page) {fmt.panicf("Unable to set codepage to %v", code_page)}
+	}
 }
