@@ -1,6 +1,13 @@
 package xterm
 
 /*
+https://home.unicode.org/
+https://unicode.org/charts/nameslist/
+https://unicode.org/charts/nameslist/n_2580.html
+https://en.wikipedia.org/wiki/Block_Elements
+https://en.wikipedia.org/wiki/Box_Drawing
+https://vt100.net/docs/vt220-rm/chapter2.html#T2-4
+
 		0	1	2	3	4	5	6	7	8	9	A	B	C	D	E	F
 U+258x	▀	▁	▂	▃	▄	▅	▆	▇	█	▉	▊	▋	▌	▍	▎	▏
 U+259x	▐	░	▒	▓	▔	▕	▖	▗	▘	▙	▚	▛	▜	▝	▞	▟
@@ -39,3 +46,6 @@ quadrant_upper_left_and_upper_right_and_lower_right	:: "\u259C" // ▜
 quadrant_upper_right								:: "\u259D" // ▝
 quadrant_upper_right_and_lower_left					:: "\u259E" // ▞
 quadrant_upper_right_and_lower_left_and_lower_right	:: "\u259F" // ▟
+
+middle_dot :: "\u00B7" // ·
+no_break_space :: "\u00A0" // ·
