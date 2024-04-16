@@ -16,6 +16,7 @@ git clone ssh://git@gitea.ontogenesis.com:2222/odin/odin-xterm.git shared/xterm
 - <https://invisible-island.net/xterm/ctlseqs/ctlseqs.html>
 - <https://vt100.net/>
 - <https://learn.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences#screen-colors>
+- <https://en.wikipedia.org/wiki/ANSI_escape_code>
 
 ## Unicode
 

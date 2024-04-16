@@ -47,5 +47,5 @@ quadrant_upper_right								:: "\u259D" // ▝
 quadrant_upper_right_and_lower_left					:: "\u259E" // ▞
 quadrant_upper_right_and_lower_left_and_lower_right	:: "\u259F" // ▟
 
-middle_dot :: "\u00B7" // ·
-no_break_space :: "\u00A0" // ·
+middle_dot     :: "\u00B7" // ·
+no_break_space :: "\u00A0" // nbsp

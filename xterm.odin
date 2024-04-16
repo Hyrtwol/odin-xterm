@@ -107,10 +107,12 @@ clear :: #force_inline proc(mode: i32) {
 }
 
 vertical_bar :: proc() {
-	// Enter Line drawing mode
+	// enter Line drawing mode
+	enter_line_drawing_mode()
 	// in line drawing mode, \x78 -> \u2502 "Vertical Bar"
+	print("x")
 	// exit line drawing mode
-	print(ESC + "(0" + "x" + ESC + "(B")
+	exit_line_drawing_mode()
 }
 
 print_vertical_border :: proc(Size: int2, text: string) {
@@ -130,12 +132,14 @@ print_vertical_border :: proc(Size: int2, text: string) {
 }
 
 print_horizontal_border :: proc(Size: int2, fIsTop: bool) {
-	print(ESC + "(0") // Enter Line drawing mode
+	// Enter Line drawing mode
+	enter_line_drawing_mode()
 	print(CSI + "104;93m") // Make the border bright yellow on bright blue
 	if fIsTop {print("l")} else {print("m")}
 	// in line drawing mode, \x71 -> \u2500 "HORIZONTAL SCAN LINE-5"
 	for _ in 1 ..< Size.x - 1 {print("q")}
 	if fIsTop {print("k")} else {print("j")}
 	restore_color()
-	print(ESC + "(B") // exit line drawing mode
+	// exit line drawing mode
+	exit_line_drawing_mode()
 }
