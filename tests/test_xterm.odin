@@ -4,6 +4,7 @@ import vt ".."
 import "core:bytes"
 import "core:fmt"
 import "core:runtime"
+import "core:unicode/utf8"
 import "core:testing"
 import win32 "core:sys/windows"
 //import _o "shared:ounit"
@@ -38,4 +39,11 @@ write_border :: proc(t: ^testing.T) {
 	fmt.println()
 	vt.print_horizontal_border(size, false)
 	fmt.println()
+}
+
+@(test)
+check_unicode_blocks :: proc(t: ^testing.T) {
+	testing.expectf(t, size_of(vt.full_block) == 16 , "%v != %v", size_of(vt.full_block), 16)
+	testing.expectf(t, len(vt.full_block) == 3 , "%v != %v", len(vt.full_block), 3)
+	testing.expectf(t, utf8.rune_count(vt.full_block) == 1 , "%v != %v", len(vt.full_block), 1)
 }

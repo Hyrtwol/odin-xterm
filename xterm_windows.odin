@@ -5,12 +5,14 @@ import "core:fmt"
 import "core:intrinsics"
 import win32 "core:sys/windows"
 
+// aliases
 L :: intrinsics.constant_utf16_cstring
 wstring :: win32.wstring
 utf8_to_wstring :: win32.utf8_to_wstring
 wstring_to_utf8 :: win32.wstring_to_utf8
 CODEPAGE :: win32.CODEPAGE
 
+// globals
 code_page := CODEPAGE.UTF8
 
 @(init)
