@@ -3,7 +3,12 @@ package xterm
 
 import "core:fmt"
 
-has_terminal_colours := false
+terminal_colour_flag :: enum {
+	STD_OUTPUT,
+	STD_ERROR,
+}
+terminal_colours :: bit_set[terminal_colour_flag]
+has_terminal_colours : terminal_colours = {}
 
 ESC :: "\x1B"
 CSI :: ESC + "["
@@ -87,11 +92,11 @@ restore_color :: #force_inline proc() {
 }
 
 enter_line_drawing_mode :: #force_inline proc() {
-	print(CSI + "(0")
+	print(ESC + "(0")
 }
 
 exit_line_drawing_mode :: #force_inline proc() {
-	print(CSI + "(B")
+	print(ESC + "(B")
 }
 
 set_cursor_position :: #force_inline proc(pos: int2) {

@@ -17,12 +17,22 @@ code_page := CODEPAGE.UTF8
 
 @(init)
 init_console :: proc() {
-	hnd := win32.GetStdHandle(win32.STD_ERROR_HANDLE)
-	mode: win32.DWORD = 0
-	if win32.GetConsoleMode(hnd, &mode) {
-		if win32.SetConsoleMode(hnd, mode | win32.ENABLE_VIRTUAL_TERMINAL_PROCESSING) {
-			has_terminal_colours = true
+	enable_virtual_terminal_processing :: proc(which: win32.DWORD) -> bool {
+		hnd := win32.GetStdHandle(which)
+		mode: win32.DWORD = 0
+		if win32.GetConsoleMode(hnd, &mode) {
+			if win32.SetConsoleMode(hnd, mode | win32.ENABLE_VIRTUAL_TERMINAL_PROCESSING) {
+				return true
+			}
 		}
+		return false
+	}
+	has_terminal_colours = {}
+	if enable_virtual_terminal_processing(win32.STD_OUTPUT_HANDLE) {
+		has_terminal_colours |= {.STD_OUTPUT}
+	}
+	if enable_virtual_terminal_processing(win32.STD_ERROR_HANDLE) {
+		has_terminal_colours |= {.STD_ERROR}
 	}
 
 	cpi, cpo := win32.GetConsoleCP(), win32.GetConsoleOutputCP()
