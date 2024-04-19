@@ -20,7 +20,7 @@ verify_constants :: proc(t: ^testing.T) {
 @(test)
 xterm_init :: proc(t: ^testing.T) {
 	testing.expectf(t, vt.code_page == vt.CODEPAGE.UTF8, "%v != %v", vt.code_page, win32.CODEPAGE.UTF8)
-	testing.expectf(t, vt.has_terminal_colours == {.STD_OUTPUT, .STD_ERROR}, "%v", vt.has_terminal_colours)
+	testing.expectf(t, vt.has_terminal_colors == {.STD_OUTPUT, .STD_ERROR}, "%v", vt.has_terminal_colors)
 }
 
 @(test)

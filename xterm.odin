@@ -3,12 +3,12 @@ package xterm
 
 import "core:fmt"
 
-terminal_colour_flag :: enum {
+terminal_color_flag :: enum {
 	STD_OUTPUT,
 	STD_ERROR,
 }
-terminal_colours :: bit_set[terminal_colour_flag]
-has_terminal_colours : terminal_colours = {}
+terminal_colors :: bit_set[terminal_color_flag]
+has_terminal_colors : terminal_colors = {}
 
 ESC :: "\x1B"
 CSI :: ESC + "["
