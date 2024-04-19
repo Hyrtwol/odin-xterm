@@ -28,6 +28,7 @@ write_colors :: proc(t: ^testing.T) {
 	col := vt.rgb{255, 200, 100}
 	vt.printfln(col, "hello")
 	fmt.println(vt.GRINNING_FACE)
+	fmt.println(vt.BUG)
 	fmt.println("bye", "bye")
 }
 
