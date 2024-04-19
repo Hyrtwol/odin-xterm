@@ -11,7 +11,7 @@ print_image :: proc(img: ^image.Image, dot_alpha: bool = false) -> int {
 		return 1
 	}
 
-	space_block := dot_alpha ? middle_dot : no_break_space
+	space_block := dot_alpha ? MIDDLE_DOT : NO_BREAK_SPACE
 
 	dp := img.depth
 	switch dp {
@@ -33,7 +33,7 @@ print_image :: proc(img: ^image.Image, dot_alpha: bool = false) -> int {
 
 					set_background_color(cb)
 					set_foreground_color(cf)
-					print(lower_half_block)
+					print(LOWER_HALF_BLOCK)
 				}
 
 				restore_color()
@@ -59,15 +59,15 @@ print_image :: proc(img: ^image.Image, dot_alpha: bool = false) -> int {
 					case 1:
 						restore_color()
 						set_foreground_color(cb.rgb)
-						print(upper_half_block)
+						print(UPPER_HALF_BLOCK)
 					case 2:
 						restore_color()
 						set_foreground_color(cf.rgb)
-						print(lower_half_block)
+						print(LOWER_HALF_BLOCK)
 					case 3:
 						set_background_color(cb.rgb)
 						set_foreground_color(cf.rgb)
-						print(lower_half_block)
+						print(LOWER_HALF_BLOCK)
 					}
 				}
 

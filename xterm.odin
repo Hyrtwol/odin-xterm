@@ -8,7 +8,7 @@ terminal_color_flag :: enum {
 	STD_ERROR,
 }
 terminal_colors :: bit_set[terminal_color_flag]
-has_terminal_colors : terminal_colors = {}
+has_terminal_colors: terminal_colors = {}
 
 ESC :: "\x1B"
 CSI :: ESC + "["

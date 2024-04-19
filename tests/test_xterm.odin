@@ -27,6 +27,7 @@ xterm_init :: proc(t: ^testing.T) {
 write_colors :: proc(t: ^testing.T) {
 	col := vt.rgb{255, 200, 100}
 	vt.printfln(col, "hello")
+	fmt.println(vt.GRINNING_FACE)
 	fmt.println("bye", "bye")
 }
 
@@ -43,7 +44,7 @@ write_border :: proc(t: ^testing.T) {
 
 @(test)
 check_unicode_blocks :: proc(t: ^testing.T) {
-	testing.expectf(t, size_of(vt.full_block) == 16 , "%v != %v", size_of(vt.full_block), 16)
-	testing.expectf(t, len(vt.full_block) == 3 , "%v != %v", len(vt.full_block), 3)
-	testing.expectf(t, utf8.rune_count(vt.full_block) == 1 , "%v != %v", len(vt.full_block), 1)
+	testing.expectf(t, size_of(vt.FULL_BLOCK) == 16 , "%v != %v", size_of(vt.FULL_BLOCK), 16)
+	testing.expectf(t, len(vt.FULL_BLOCK) == 3 , "%v != %v", len(vt.FULL_BLOCK), 3)
+	testing.expectf(t, utf8.rune_count(vt.FULL_BLOCK) == 1 , "%v != %v", len(vt.FULL_BLOCK), 1)
 }
