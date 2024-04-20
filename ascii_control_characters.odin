@@ -71,11 +71,3 @@ control_characters :: enum u8 {
 	// 127 Delete
 	DEL = '\x7F',
 }
-
-when ODIN_OS == .Windows {
-	newline := "\r\n"
-	list_sep := ';'
-} else {
-	newline := "\n"
-	list_sep := ':'
-}

@@ -5,15 +5,15 @@ import "core:fmt"
 import "core:intrinsics"
 import win32 "core:sys/windows"
 
-// aliases
+OS_NEWLINE :: "\r\n"
+OS_LIST_SEP :: ";"
+
+wanted_code_page := win32.CODEPAGE.UTF8
+
 L :: intrinsics.constant_utf16_cstring
 wstring :: win32.wstring
 utf8_to_wstring :: win32.utf8_to_wstring
 wstring_to_utf8 :: win32.wstring_to_utf8
-CODEPAGE :: win32.CODEPAGE
-
-// globals
-code_page := CODEPAGE.UTF8
 
 @(init)
 init_console :: proc() {
@@ -36,10 +36,10 @@ init_console :: proc() {
 	}
 
 	cpi, cpo := win32.GetConsoleCP(), win32.GetConsoleOutputCP()
-	if cpi != code_page {
-		if !win32.SetConsoleCP(code_page) {fmt.panicf("Unable to set codepage to %v", code_page)}
+	if cpi != wanted_code_page {
+		if !win32.SetConsoleCP(wanted_code_page) {fmt.panicf("Unable to set codepage to %v", wanted_code_page)}
 	}
-	if cpo != code_page {
-		if !win32.SetConsoleOutputCP(code_page) {fmt.panicf("Unable to set codepage to %v", code_page)}
+	if cpo != wanted_code_page {
+		if !win32.SetConsoleOutputCP(wanted_code_page) {fmt.panicf("Unable to set codepage to %v", wanted_code_page)}
 	}
 }
