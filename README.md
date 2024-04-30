@@ -9,6 +9,8 @@ cd %ODIN_ROOT%
 git clone ssh://git@gitea.ontogenesis.com:2222/odin/odin-xterm.git shared/xterm
 ```
 
+![screenshot](docs/screenshot.png)
+
 ## Virtual Terminal
 
 - <https://learn.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences>
@@ -34,28 +36,27 @@ ESC :: "\x1b"
 CSI :: "\x1b["
 ```
 
-Command								| Sequence										| Description
+Command                             | Sequence                                      | Description
 ------------------------------------|-----------------------------------------------|------------
-Cursor Up							| `ESC [ <n> A	CUU`	                        | Cursor up by `<n>`
-Cursor Down							| `ESC [ <n> B	CUD`	                        | Cursor down by `<n>`
-Cursor Forward						| `ESC [ <n> C	CUF`	                        | Cursor forward (Right) by `<n>`
-Cursor Backward						| `ESC [ <n> D	CUB`	                        | Cursor backward (Left) by `<n>`
-Cursor Next Line					| `ESC [ <n> E	CNL`                            | Cursor down `<n>` lines from current position
-Cursor Previous Line				| `ESC [ <n> F	CPL`                            | Cursor up `<n>` lines from current position
-Cursor Horizontal Absolute			| `ESC [ <n> G	CHA`                            | Cursor moves to `<n>`th position horizontally in the current line
-Vertical Line Position Absolute		| `ESC [ <n> d	VPA`                            | Cursor moves to the `<n>`th position vertically in the current column
-Cursor Position						| `ESC [ <y> ; <x> H	CUP`	                | *Cursor moves to `<x>`; `<y>` coordinate within the viewport, where `<x>` is the column of the `<y>` line
-Horizontal Vertical Position		| `ESC [ <y> ; <x> f	HVP`	                | *Cursor moves to `<x>`; `<y>` coordinate within the viewport, where `<x>` is the column of the `<y>` line
-Save Cursor – Ansi.sys emulation	| `ESC [ s	ANSISYSSC`	                        | **With no parameters, performs a save cursor operation like DECSC
-Restore Cursor – Ansi.sys emulation	| `ESC [ u	ANSISYSRC`	                        | **With no parameters, performs a restore cursor operation like DECRC
-Scroll Up							| `ESC [ <n> S	SU`	                            | Scroll text up by `<n>`. Also known as pan down, new lines fill in from the bottom of the screen
-Scroll Down							| `ESC [ <n> T	SD`	                            | Scroll down by `<n>`. Also known as pan up, new lines fill in from the top of the screen
-Modify Screen Colors				| `ESC ] 4 ; <i> ; rgb : <r> / <g> / <b> <ST>`	| Sets the screen color palette index `<i>` to the RGB values specified in `<r>`, `<g>`, `<b>`
-Set foreground color				| `38 ; 2 ; <r> ; <g> ; <b>`	                | Set foreground color to RGB value specified in `<r>`, `<g>`, `<b>` parameters*
-Set background color				| `48 ; 2 ; <r> ; <g> ; <b>`	                | Set background color to RGB value specified in `<r>`, `<g>`, `<b>` parameters*
-Set foreground color				| `38 ; 5 ; <s>`	                            | Set foreground color to `<s>` index in 88 or 256 color table*
-Set background color				| `48 ; 5 ; <s>`	                            | Set background color to `<s>` index in 88 or 256 color table*
-
+Cursor Up                           | `ESC [ <n> A  CUU`                            | Cursor up by `<n>`
+Cursor Down                         | `ESC [ <n> B  CUD`                            | Cursor down by `<n>`
+Cursor Forward                      | `ESC [ <n> C  CUF`                            | Cursor forward (Right) by `<n>`
+Cursor Backward                     | `ESC [ <n> D  CUB`                            | Cursor backward (Left) by `<n>`
+Cursor Next Line                    | `ESC [ <n> E  CNL`                            | Cursor down `<n>` lines from current position
+Cursor Previous Line                | `ESC [ <n> F  CPL`                            | Cursor up `<n>` lines from current position
+Cursor Horizontal Absolute          | `ESC [ <n> G  CHA`                            | Cursor moves to `<n>`th position horizontally in the current line
+Vertical Line Position Absolute     | `ESC [ <n> d  VPA`                            | Cursor moves to the `<n>`th position vertically in the current column
+Cursor Position                     | `ESC [ <y> ; <x> H    CUP`                    | *Cursor moves to `<x>`; `<y>` coordinate within the viewport, where `<x>` is the column of the `<y>` line
+Horizontal Vertical Position        | `ESC [ <y> ; <x> f    HVP`                    | *Cursor moves to `<x>`; `<y>` coordinate within the viewport, where `<x>` is the column of the `<y>` line
+Save Cursor – Ansi.sys emulation    | `ESC [ s  ANSISYSSC`                          | **With no parameters, performs a save cursor operation like DECSC
+Restore Cursor – Ansi.sys emulation | `ESC [ u  ANSISYSRC`                          | **With no parameters, performs a restore cursor operation like DECRC
+Scroll Up                           | `ESC [ <n> S  SU`                             | Scroll text up by `<n>`. Also known as pan down, new lines fill in from the bottom of the screen
+Scroll Down                         | `ESC [ <n> T  SD`                             | Scroll down by `<n>`. Also known as pan up, new lines fill in from the top of the screen
+Modify Screen Colors                | `ESC ] 4 ; <i> ; rgb : <r> / <g> / <b> <ST>`  | Sets the screen color palette index `<i>` to the RGB values specified in `<r>`, `<g>`, `<b>`
+Set foreground color                | `38 ; 2 ; <r> ; <g> ; <b>`                    | Set foreground color to RGB value specified in `<r>`, `<g>`, `<b>` parameters*
+Set background color                | `48 ; 2 ; <r> ; <g> ; <b>`                    | Set background color to RGB value specified in `<r>`, `<g>`, `<b>` parameters*
+Set foreground color                | `38 ; 5 ; <s>`                                | Set foreground color to `<s>` index in 88 or 256 color table*
+Set background color                | `48 ; 5 ; <s>`                                | Set background color to `<s>` index in 88 or 256 color table*
 
 Try some Set Graphics Rendition (SGR) terminal escape sequences
 
