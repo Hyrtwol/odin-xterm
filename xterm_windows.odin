@@ -1,8 +1,8 @@
 //+build windows
 package xterm
 
+import "base:intrinsics"
 import "core:fmt"
-import "core:intrinsics"
 import win32 "core:sys/windows"
 
 OS_NEWLINE :: "\r\n"
