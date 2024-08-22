@@ -1,10 +1,10 @@
 // +vet
 package xterm_image_viewer
 
+import xt "../.."
 import "core:fmt"
 import "core:image"
 import "core:image/png"
-import xt "shared:xterm"
 
 _ :: png
 
