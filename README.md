@@ -2,11 +2,10 @@
 
 Console Virtual Terminal
 
-To use the lib clone it in the shared folder in the odin root.
+One way to use the lib is to add it as a git submodule:
 
 ```bat
-cd %ODIN_ROOT%
-git clone ssh://git@gitea.ontogenesis.com:2222/odin/odin-xterm.git shared/xterm
+git submodule add git@github.com:Hyrtwol/odin-xterm.git xterm
 ```
 
 ![screenshot](docs/screenshot.png)
