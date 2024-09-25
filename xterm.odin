@@ -1,4 +1,4 @@
-// +vet
+#+vet
 package xterm
 
 import "core:fmt"

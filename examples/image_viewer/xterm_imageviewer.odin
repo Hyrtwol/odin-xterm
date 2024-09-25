@@ -1,4 +1,4 @@
-// +vet
+#+vet
 package xterm_image_viewer
 
 import xt "../.."
