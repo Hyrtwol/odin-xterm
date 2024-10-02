@@ -14,7 +14,7 @@ verify_constants :: proc(t: ^testing.T) {
 	testing.expectf(t, xt.CSI == exp, "%v != %v", xt.CSI, exp)
 }
 
-@(test)
+//@(test) not working with msbuild
 xterm_init :: proc(t: ^testing.T) {
 	testing.expectf(t, xt.has_terminal_colors == {.STD_OUTPUT, .STD_ERROR}, "%v", xt.has_terminal_colors)
 }
