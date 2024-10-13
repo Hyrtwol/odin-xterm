@@ -1,17 +1,14 @@
 #+vet
 package xterm
 
+import "core:encoding/ansi"
 import "core:fmt"
 
 terminal_color_flag :: enum {
 	STD_OUTPUT,
 	STD_ERROR,
 }
-terminal_colors :: bit_set[terminal_color_flag]
-has_terminal_colors: terminal_colors = {}
-
-ESC :: "\x1B"
-CSI :: ESC + "["
+enabled_virtual_terminal_processing: bit_set[terminal_color_flag] = {}
 
 rgb :: [3]u8
 rgba :: [4]u8
@@ -37,7 +34,6 @@ printfln :: proc {
 	rgb_printfln,
 }
 
-
 rgb_print :: #force_inline proc(col: rgb, args: ..any, sep := " ", flush := true) {
 	set_foreground_color(col)
 	print(args, sep = sep, flush = flush)
@@ -62,19 +58,19 @@ rgb_printfln :: #force_inline proc(col: rgb, format: string, args: ..any, flush 
 
 
 rgb_set_foreground_color :: #force_inline proc(col: rgb) {
-	printf(CSI + "38;2;%d;%d;%dm", col.r, col.g, col.b)
+	printf(ansi.CSI + ansi.FG_COLOR_24_BIT + ";%d;%d;%d" + ansi.SGR, col.r, col.g, col.b)
 }
 
 rgb_set_background_color :: #force_inline proc(col: rgb) {
-	printf(CSI + "48;2;%d;%d;%dm", col.r, col.g, col.b)
+	printf(ansi.CSI + ansi.BG_COLOR_24_BIT + ";%d;%d;%d" + ansi.SGR, col.r, col.g, col.b)
 }
 
 rgba_set_foreground_color :: #force_inline proc(col: rgba) {
-	printf(CSI + "38;2;%d;%d;%dm", col.r, col.g, col.b)
+	rgb_set_foreground_color(col.rgb)
 }
 
 rgba_set_background_color :: #force_inline proc(col: rgba) {
-	printf(CSI + "48;2;%d;%d;%dm", col.r, col.g, col.b)
+	rgb_set_background_color(col.rgb)
 }
 
 set_foreground_color :: proc {
@@ -88,27 +84,27 @@ set_background_color :: proc {
 }
 
 restore_color :: #force_inline proc() {
-	print(CSI + "0m")
+	print(ansi.CSI + ansi.RESET + ansi.SGR)
 }
 
 enter_line_drawing_mode :: #force_inline proc() {
-	print(ESC + "(0")
+	print(ansi.ESC + "(0")
 }
 
 exit_line_drawing_mode :: #force_inline proc() {
-	print(ESC + "(B")
+	print(ansi.ESC + "(B")
 }
 
 set_cursor_position :: #force_inline proc(pos: int2) {
-	printf(CSI + "%d;%dH", pos.x, pos.y)
+	printf(ansi.CSI + "%d;%d" + ansi.CUP, pos.x, pos.y)
 }
 
 set_cursor_position_home :: #force_inline proc() {
-	print(CSI + "H")
+	print(ansi.CSI + ansi.CUP)
 }
 
 clear :: #force_inline proc(mode: i32) {
-	print(CSI + "%dJ", mode)
+	print(ansi.CSI + "%d" + ansi.ED, mode)
 }
 
 vertical_bar :: proc() {
@@ -121,7 +117,7 @@ vertical_bar :: proc() {
 }
 
 print_vertical_border :: proc(Size: int2, text: string) {
-	print(CSI + "104;93m") // bright yellow on bright blue
+	print(ansi.CSI + ansi.BG_BRIGHT_BLUE + ";" + ansi.FG_BRIGHT_YELLOW + ansi.SGR) // bright yellow on bright blue
 	vertical_bar()
 	cc := int(Size.x - 2)
 	l := len(text)
@@ -139,7 +135,7 @@ print_vertical_border :: proc(Size: int2, text: string) {
 print_horizontal_border :: proc(Size: int2, fIsTop: bool) {
 	// Enter Line drawing mode
 	enter_line_drawing_mode()
-	print(CSI + "104;93m") // Make the border bright yellow on bright blue
+	print(ansi.CSI + ansi.BG_BRIGHT_BLUE + ";" + ansi.FG_BRIGHT_YELLOW + ansi.SGR) // Make the border bright yellow on bright blue
 	if fIsTop {print("l")} else {print("m")}
 	// in line drawing mode, \x71 -> \u2500 "HORIZONTAL SCAN LINE-5"
 	for _ in 1 ..< Size.x - 1 {print("q")}

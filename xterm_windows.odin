@@ -27,12 +27,12 @@ init_console :: proc() {
 		}
 		return false
 	}
-	has_terminal_colors = {}
+	enabled_virtual_terminal_processing = {}
 	if enable_virtual_terminal_processing(win32.STD_OUTPUT_HANDLE) {
-		has_terminal_colors |= {.STD_OUTPUT}
+		enabled_virtual_terminal_processing |= {.STD_OUTPUT}
 	}
 	if enable_virtual_terminal_processing(win32.STD_ERROR_HANDLE) {
-		has_terminal_colors |= {.STD_ERROR}
+		enabled_virtual_terminal_processing |= {.STD_ERROR}
 	}
 
 	cpi, cpo := win32.GetConsoleCP(), win32.GetConsoleOutputCP()

@@ -2,41 +2,21 @@
 package test_xterm
 
 import xt ".."
-import "core:fmt"
 import "core:testing"
 import "core:unicode/utf8"
+import "core:encoding/ansi"
 
 @(test)
 verify_constants :: proc(t: ^testing.T) {
 	exp := "\x1b"
-	testing.expectf(t, xt.ESC == exp, "%v != %v", xt.ESC, exp)
+	testing.expectf(t, ansi.ESC == exp, "%v != %v", ansi.ESC, exp)
 	exp = "\x1b["
-	testing.expectf(t, xt.CSI == exp, "%v != %v", xt.CSI, exp)
+	testing.expectf(t, ansi.CSI == exp, "%v != %v", ansi.CSI, exp)
 }
 
 //@(test) not working with msbuild
 xterm_init :: proc(t: ^testing.T) {
-	testing.expectf(t, xt.has_terminal_colors == {.STD_OUTPUT, .STD_ERROR}, "%v", xt.has_terminal_colors)
-}
-
-@(test)
-write_colors :: proc(t: ^testing.T) {
-	col := xt.rgb{255, 200, 100}
-	xt.printfln(col, "hello")
-	fmt.println(xt.GRINNING_FACE)
-	fmt.println(xt.BUG)
-	fmt.println("bye", "bye")
-}
-
-@(test)
-write_border :: proc(t: ^testing.T) {
-	size := xt.int2{10, 10}
-	xt.print_horizontal_border(size, true)
-	fmt.println()
-	xt.print_vertical_border(size, "Hello")
-	fmt.println()
-	xt.print_horizontal_border(size, false)
-	fmt.println()
+	testing.expectf(t, xt.enabled_virtual_terminal_processing == {.STD_OUTPUT, .STD_ERROR}, "%v", xt.enabled_virtual_terminal_processing)
 }
 
 @(test)
