@@ -104,7 +104,7 @@ set_cursor_position_home :: #force_inline proc() {
 }
 
 clear :: #force_inline proc(mode: i32) {
-	print(ansi.CSI + "%d" + ansi.ED, mode)
+	printf(ansi.CSI + "%d" + ansi.ED, mode)
 }
 
 vertical_bar :: proc() {
