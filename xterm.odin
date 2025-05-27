@@ -1,7 +1,7 @@
 #+vet
 package xterm
 
-import "core:encoding/ansi"
+import "core:terminal/ansi"
 import "core:fmt"
 
 terminal_color_flag :: enum {
