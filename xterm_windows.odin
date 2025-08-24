@@ -2,6 +2,7 @@
 package xterm
 
 import "base:intrinsics"
+import "base:runtime"
 import "core:fmt"
 import win32 "core:sys/windows"
 
@@ -16,7 +17,8 @@ utf8_to_wstring :: win32.utf8_to_wstring
 wstring_to_utf8 :: win32.wstring_to_utf8
 
 @(init)
-init_console :: proc() {
+init_console :: proc "contextless" () {
+	context = runtime.default_context()
 	enable_virtual_terminal_processing :: proc(which: win32.DWORD) -> bool {
 		hnd := win32.GetStdHandle(which)
 		mode: win32.DWORD = 0

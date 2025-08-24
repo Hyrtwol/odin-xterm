@@ -135,7 +135,8 @@ print_vertical_border :: proc(Size: int2, text: string) {
 print_horizontal_border :: proc(Size: int2, fIsTop: bool) {
 	// Enter Line drawing mode
 	enter_line_drawing_mode()
-	print(ansi.CSI + ansi.BG_BRIGHT_BLUE + ";" + ansi.FG_BRIGHT_YELLOW + ansi.SGR) // Make the border bright yellow on bright blue
+	// Make the border bright yellow on bright blue
+	print(ansi.CSI + ansi.BG_BRIGHT_BLUE + ";" + ansi.FG_BRIGHT_YELLOW + ansi.SGR)
 	if fIsTop {print("l")} else {print("m")}
 	// in line drawing mode, \x71 -> \u2500 "HORIZONTAL SCAN LINE-5"
 	for _ in 1 ..< Size.x - 1 {print("q")}
